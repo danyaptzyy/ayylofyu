@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>untuk ayy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    *:focus {
+      outline: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255, 105, 180, 0.18), transparent 20%),
+        radial-gradient(circle at 90% 20%, rgba(153, 102, 255, 0.16), transparent 22%),
+        radial-gradient(circle at 50% 100%, rgba(255, 140, 190, 0.12), transparent 25%),
+        linear-gradient(135deg, #0a0820 0%, #13112a 35%, #1d1a3a 100%);
+      color: #fff;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --muted: rgba(255,255,255,0.72);
+      --soft: rgba(255,255,255,0.08);
+      --soft-2: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.12);
+      --pink1: #ff4f9a;
+      --pink2: #ff85c2;
+      --pink3: #ffd6ec;
+      --pink4: #ffb6d9;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+    }
+
+    button, a {
+      touch-action: manipulation;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    img {
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .glow {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(80px);
+      opacity: 0.16;
+    }
+
+    .g1 {
+      width: 320px;
+      height: 320px;
+      background: #ff4f9a;
+      left: -60px;
+      top: -40px;
+    }
+
+    .g2 {
+      width: 280px;
+      height: 280px;
+      background: #7d5cff;
+      right: -40px;
+      top: 10%;
+    }
+
+    .g3 {
+      width: 260px;
+      height: 260px;
+      background: #ff8fc7;
+      left: 35%;
+      bottom: -80px;
+      opacity: 0.12;
+    }
+
+    .grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image:
+        radial-gradient(circle at 20% 20%, #fff 0.5px, transparent 0.7px),
+        radial-gradient(circle at 70% 40%, #fff 0.5px, transparent 0.7px),
+        radial-gradient(circle at 40% 80%, #fff 0.5px, transparent 0.7px);
+      background-size: 120px 120px;
+    }
+
+    .heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      font-size: 18px;
+      opacity: 0.88;
+      animation: floatUp linear forwards;
+    }
+
+    .preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255, 105, 180, 0.12), transparent 25%),
+        linear-gradient(135deg, rgba(10,8,32,0.98), rgba(19,17,42,0.99), rgba(29,26,58,0.99));
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+
+    .preloader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .preloader-inner {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .preloader-kicker {
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.32em;
+      text-transform: lowercase;
+      font-size: 0.78rem;
+      margin-bottom: 18px;
+    }
+
+    .preloader-name {
+      font-size: clamp(3rem, 9vw, 6.8rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: rgba(255,255,255,0.18);
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(
+        110deg,
+        rgba(255,255,255,0.18) 0%,
+        rgba(255,255,255,0.18) 35%,
+        rgba(255,214,236,0.95) 48%,
+        rgba(255,255,255,0.18) 62%,
+        rgba(255,255,255,0.18) 100%
+      );
+      background-size: 220% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmerText 2.6s ease-in-out infinite;
+      text-shadow: 0 0 30px rgba(255, 133, 194, 0.12);
+      text-transform: lowercase;
+    }
+
+    .preloader-sub {
+      margin-top: 16px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      animation: fadeSoft 1.8s ease-in-out infinite alternate;
+    }
+
+    .start-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 105, 180, 0.14), transparent 30%),
+        linear-gradient(135deg, rgba(10,8,32,0.96), rgba(19,17,42,0.98), rgba(29,26,58,0.98));
+      transition: 0.8s ease;
+    }
+
+    .start-overlay.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: scale(1.02);
+    }
+
+    .start-card {
+      width: 100%;
+      max-width: 560px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 34px;
+      padding: 34px 28px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .start-card::before,
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 42%);
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      text-transform: lowercase;
+    }
+
+    .start-title {
+      font-size: 2.2rem;
+      line-height: 1.12;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+    }
+
+    .start-sub {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 22px;
+      text-transform: lowercase;
+    }
+
+    .pulse {
+      animation: pulseGlow 2s infinite;
+    }
+
+    .app {
+      position: fixed;
+      inset: 0;
+      z-index: 3;
+      display: none;
+    }
+
+    .app.show {
+      display: block;
+    }
+
+    .slides {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(70px) scale(0.985);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0) scale(1);
+    }
+
+    .panel {
+      width: 100%;
+      max-width: 1120px;
+      max-height: calc(100vh - 44px);
+      overflow: auto;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 34px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      scrollbar-width: none;
+    }
+
+    .panel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      line-height: 1.05;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+      text-transform: lowercase;
+    }
+
+    .typing-line {
+      min-height: 30px;
+      font-size: 1rem;
+      color: var(--pink3);
+      margin-bottom: 12px;
+      text-transform: lowercase;
+    }
+
+    .couple-name {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--pink4);
+      margin-bottom: 18px;
+      letter-spacing: 0.02em;
+      text-transform: lowercase;
+    }
+
+    .hero-desc,
+    .text,
+    .section-sub,
+    .music-status,
+    .wild-output,
+    .game-result,
+    .viewer-caption,
+    .footer-text {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #f4f4f8;
+      text-transform: lowercase;
+    }
+
+    .hero-desc + .hero-desc,
+    .text + .text {
+      margin-top: 12px;
+    }
+
+    .hero-actions,
+    .actions,
+    .music-row,
+    .nav-wrap {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.96rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      text-transform: lowercase;
+    }
+
+    button:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    button:active {
+      transform: scale(0.98);
+      opacity: 0.95;
+    }
+
+    .btn-main {
+      background: linear-gradient(135deg, var(--pink1), var(--pink2));
+      color: white;
+      box-shadow: 0 10px 26px rgba(255, 79, 154, 0.35);
+    }
+
+    .btn-second {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .btn-soft {
+      background: rgba(255, 182, 217, 0.15);
+      color: #fff;
+      border: 1px solid rgba(255, 182, 217, 0.18);
+    }
+
+    .hero-photo {
+      min-height: 470px;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.26);
+      cursor: pointer;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 22px;
+      background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0));
+    }
+
+    .hero-overlay h3 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      text-transform: lowercase;
+    }
+
+    .hero-overlay p {
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+      font-size: 0.95rem;
+      text-transform: lowercase;
+    }
+
+    .section-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--pink3);
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+      text-transform: lowercase;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .lux-box {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 24px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lux-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent 50%);
+      pointer-events: none;
+    }
+
+    .photo-wall {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr 1fr;
+      gap: 16px;
+      align-items: end;
+      margin-top: 10px;
+    }
+
+    .photo-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 18px 30px rgba(0,0,0,0.22);
+      cursor: pointer;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 36px rgba(0,0,0,0.28);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-card.large {
+      min-height: 470px;
+    }
+
+    .photo-card.medium {
+      min-height: 290px;
+    }
+
+    .photo-card.small {
+      min-height: 220px;
+    }
+
+    .photo-label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(15,15,26,0.42);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.92);
+      font-size: 0.88rem;
+      text-transform: lowercase;
+    }
+
+    .quote-strip {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.9);
+      line-height: 1.8;
+      text-align: center;
+      text-transform: lowercase;
+    }
+
+    .music-chip {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.86);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      text-transform: lowercase;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 9px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--pink1), var(--pink2));
+      border-radius: 999px;
+      transition: width 0.15s linear;
+    }
+
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 8px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.72);
+      text-transform: lowercase;
+    }
+
+    .wild-output,
+    .music-status,
+    .game-result {
+      margin-top: 14px;
+      color: #ffe2f0;
+      min-height: 28px;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .guess-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .meter {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .meter-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--pink1), var(--pink2));
+      transition: width 0.35s ease;
+    }
+
+    .tease-zone {
+      position: relative;
+      min-height: 150px;
+      margin-top: 14px;
+    }
+
+    .tease-yes,
+    .tease-no {
+      position: absolute;
+      min-width: 124px;
+    }
+
+    .tease-yes {
+      left: 18%;
+      top: 22px;
+    }
+
+    .tease-no {
+      right: 18%;
+      top: 22px;
+    }
+
+    .ending {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .ending-title {
+      font-size: 2.8rem;
+      line-height: 1.05;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      text-transform: lowercase;
+    }
+
+    .ending-sub {
+      margin-bottom: 12px;
+    }
+
+    .ending-cta {
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .footer-text {
+      margin-top: 18px;
+      color: rgba(255,255,255,0.72);
+      text-align: center;
+    }
+
+    .nav-wrap {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 18;
+      display: none;
+      align-items: center;
+      background: rgba(14, 14, 28, 0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-wrap.show {
+      display: flex;
+    }
+
+    .page-indicator {
+      min-width: 78px;
+      text-align: center;
+      color: rgba(255,255,255,0.82);
+      font-size: 0.92rem;
+      text-transform: lowercase;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.58);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 40;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 860px;
+      background: rgba(18, 18, 32, 0.98);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 24px 56px rgba(0,0,0,0.42);
+      animation: popIn 0.25s ease;
+    }
+
+    .viewer-img {
+      width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      border-radius: 20px;
+      display: block;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .viewer-caption {
+      margin-top: 12px;
+      margin-bottom: 14px;
+      color: rgba(255,255,255,0.86);
+      line-height: 1.75;
+    }
+
+    audio {
+      display: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh) scale(1.35);
+        opacity: 0;
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 rgba(255,79,154,0.2);
+      }
+      50% {
+        box-shadow: 0 0 24px rgba(255,79,154,0.35);
+      }
+    }
+
+    @keyframes shimmerText {
+      0% {
+        background-position: 180% 0;
+        filter: drop-shadow(0 0 8px rgba(255,133,194,0.04));
+      }
+      50% {
+        filter: drop-shadow(0 0 18px rgba(255,133,194,0.18));
+      }
+      100% {
+        background-position: -40% 0;
+        filter: drop-shadow(0 0 8px rgba(255,133,194,0.04));
+      }
+    }
+
+    @keyframes fadeSoft {
+      from { opacity: 0.55; }
+      to { opacity: 0.92; }
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .story-grid,
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo {
+        min-height: 340px;
+      }
+
+      .photo-wall {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-card.large,
+      .photo-card.medium,
+      .photo-card.small {
+        min-height: 250px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .slide {
+        padding: 10px;
+      }
+
+      .panel,
+      .start-card {
+        padding: 18px 14px;
+        border-radius: 24px;
+      }
+
+      .hero-title,
+      .ending-title {
+        font-size: 1.95rem;
+      }
+
+      .start-title {
+        font-size: 1.75rem;
+      }
+
+      .typing-line,
+      .hero-desc,
+      .text,
+      .section-sub,
+      .music-status,
+      .wild-output,
+      .game-result,
+      .viewer-caption,
+      .footer-text,
+      .time-row,
+      .quote-strip,
+      .preloader-sub {
+        font-size: 0.93rem;
+        line-height: 1.7;
+      }
+
+      .couple-name {
+        font-size: 0.98rem;
+      }
+
+      .hero-actions,
+      .actions,
+      .music-row,
+      .guess-grid {
+        flex-direction: column;
+        display: flex;
+      }
+
+      .hero-actions button,
+      .actions button,
+      .music-row button,
+      .guess-grid button {
+        width: 100%;
+      }
+
+      .music-chip {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .tease-zone {
+        min-height: 160px;
+      }
+
+      .tease-yes,
+      .tease-no {
+        min-width: 100px;
+        font-size: 0.88rem;
+      }
+
+      .tease-yes {
+        left: 6%;
+      }
+
+      .tease-no {
+        right: 6%;
+      }
+
+      .nav-wrap {
+        bottom: 10px;
+        width: calc(100% - 20px);
+        justify-content: center;
+      }
+
+      .page-indicator {
+        min-width: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient">
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+    <div class="glow g3"></div>
+    <div class="grain"></div>
+  </div>
+
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-kicker">for</div>
+      <div class="preloader-name">ayy</div>
+      <div class="preloader-sub">pelan pelan bukanya yaaa</div>
+    </div>
+  </div>
+
+  <div class="start-overlay" id="startOverlay">
+    <div class="start-card">
+      <div class="badge">private story</div>
+      <div class="start-title">haii baobei</div>
+      <div class="start-sub">
+        ini aku bikinn khusus buat kamu yaa, coba bukaa pelan pelan
+      </div>
+      <button class="btn-main pulse" onclick="enterPage()">tap to open</button>
+    </div>
+  </div>
+
+  <div class="app" id="app">
+    <div class="slides">
+      <section class="slide active">
+        <div class="panel">
+          <div class="badge">chapter 1</div>
+          <div class="hero">
+            <div>
+              <div class="hero-title">haii cantikkuu</div>
+              <div class="typing-line" id="typingText"></div>
+              <div class="couple-name">dann ❤ ayy</div>
+
+              <div class="hero-desc">
+                kamu tuh cantik banget, lucu banget, terus ada sisi dewasa yang bikin aku makin sukaa.
+              </div>
+              <div class="hero-desc">
+                apalagi kamu ngerti bahasa taiwan juga, makin bikin kamu keliatan beda banget di mata aku.
+              </div>
+              <div class="hero-desc">
+                jadi kalo aku keliatan suka merhatiin kamu terus, ya gimana yaa, soalnya kamu semanis itu.
+              </div>
+
+              <div class="hero-actions" style="margin-top:18px;">
+                <button class="btn-main" onclick="goToWhatsApp()">pencet kalau kamu kangen aku</button>
+                <button class="btn-soft" onclick="nextSlide()">next page</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="hero-photo" onclick="openImageViewer('foto-main.jpg', 'baobei yang makin dilihat makin susah disikapin biasa')">
+                <img src="foto-main.jpg" alt="foto utama" />
+                <div class="hero-overlay">
+                  <h3>buat kamuu</h3>
+                  <p>yang cantik, lucu, dan bikin aku kangen terus</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-text">
+            beberapa orang cantik. beberapa orang ngena. kamu dua duanya.
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="panel">
+          <div class="badge">chapter 2</div>
+          <div class="section-title">foto foto cantikkuu</div>
+          <div class="section-sub">
+            ini aku pilihin yang paling bikin aku salting wkwkw
+          </div>
+
+          <div class="photo-wall">
+            <div class="photo-card large" onclick="openImageViewer('foto1.jpg', 'yang ini cantiknya rapih, tapi efeknya ke aku kacau')">
+              <img src="foto1.jpg" alt="foto 1" />
+              <div class="photo-label">yang ini lucuu banget</div>
+            </div>
+
+            <div class="photo-stack">
+              <div class="photo-card medium" onclick="openImageViewer('foto2.jpg', 'yang ini keliatan tenang, tapi cukup buat bikin aku salah fokus')">
+                <img src="foto2.jpg" alt="foto 2" />
+                <div class="photo-label">yang ini manis parah</div>
+              </div>
+              <div class="photo-card small" onclick="openImageViewer('foto3.jpg', 'yang ini favorit. sopan dilihat, tapi auranya nakal ke kepala aku')">
+                <img src="foto3.jpg" alt="foto 3" />
+                <div class="photo-label">yang ini favorit akuu</div>
+              </div>
+            </div>
+
+            <div class="lux-box" style="display:flex; align-items:center; justify-content:center;">
+              <div>
+                <div class="section-title" style="margin-bottom:12px;">sedikit jujur</div>
+                <div class="text">
+                  kamu bukan tipe yang cuma cantik buat dilihat. kamu juga tipe yang bikin orang betah mandang lebih lama dari yang seharusnya.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quote-strip">
+            kamu tuh paket lengkap banget, cantik, lucu, manis, terus bikin aku susah buat ga kepikiran
+          </div>
+
+          <div class="actions" style="margin-top:18px;">
+            <button class="btn-second" onclick="prevSlide()">back</button>
+            <button class="btn-main" onclick="nextSlide()">next page</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="panel">
+          <div class="badge">chapter 3</div>
+
+          <div class="story-grid">
+            <div class="lux-box">
+              <div class="section-title">lagu buat nemenin</div>
+              <div class="section-sub">
+                karena beberapa hal emang lebih enak dirasain kalo ada musik di belakangnya
+              </div>
+
+              <div class="music-row">
+                <button class="btn-main" onclick="toggleMusic()" id="musicBtn">pause music</button>
+                <div class="music-chip" id="musicChip">lagi muter buat baobei</div>
+              </div>
+
+              <div class="progress-wrap">
+                <div class="progress-bar" id="progressBar"></div>
+              </div>
+
+              <div class="time-row">
+                <span id="currentTime">0:00</span>
+                <span id="durationTime">0:00</span>
+              </div>
+
+              <div class="music-status" id="musicStatus">
+                musik lagi diputar. biar vibes nya makin kena pas kamu buka ini.
+              </div>
+
+              <audio id="bgMusic" loop>
+                <source src="music.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+
+            <div class="lux-box">
+              <div class="section-title">yang pengen aku bilang ke kamu</div>
+              <div class="text" id="wildText">
+                jujur yaa, tiap liat kamu tuh rasanya pengen deket terus. soalnya kamu secantik itu, selucu itu, dan senyenengin itu.
+              </div>
+
+              <div class="actions" style="margin-top:16px;">
+                <button class="btn-main" onclick="generateWildText()">bikin kata baru</button>
+                <button class="btn-second" onclick="copyWildText()">copy kata</button>
+              </div>
+
+              <div class="wild-output" id="wildOutput">
+                kalo aku keliatan salting terus, ya soalnya kamu bikin aku begituu.
+              </div>
+            </div>
+          </div>
+
+          <div class="actions" style="margin-top:18px;">
+            <button class="btn-second" onclick="prevSlide()">back</button>
+            <button class="btn-main" onclick="nextSlide()">next page</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="panel">
+          <div class="badge">chapter 4</div>
+          <div class="section-title">mini games for baobei</div>
+          <div class="section-sub">
+            karena kalo cuma dipuji doang kurang seru. mending aku godain sekalian.
+          </div>
+
+          <div class="game-grid">
+            <div class="lux-box">
+              <div class="section-title">game 1 — tebak level salting dann</div>
+              <div class="text">
+                menurut kamu, kalo kamu manggil “babuu” sambil senyum dikit, dann bakal salting berapa persen?
+              </div>
+
+              <div class="guess-grid">
+                <button class="btn-soft" onclick="setMeter(45, 'lumayan aman, tapi jujur masih kurang tinggi.')">45%</button>
+                <button class="btn-soft" onclick="setMeter(72, 'nah ini masuk akal. udah mulai kacau tapi masih bisa pura pura tenang.')">72%</button>
+                <button class="btn-soft" onclick="setMeter(88, 'iyaa ini jujur. udah susah fokus, udah mulai senyum sendiri.')">88%</button>
+                <button class="btn-soft" onclick="setMeter(100, 'bener. 100 persen. udah habis. nggak bisa sok cool lagi.')">100%</button>
+              </div>
+
+              <div class="meter">
+                <div class="meter-fill" id="meterFill"></div>
+              </div>
+
+              <div class="game-result" id="meterText">
+                pilih aja. tapi jangan pura pura nggak tau jawabannya.
+              </div>
+            </div>
+
+            <div class="lux-box">
+              <div class="section-title">game 2 — biarin dann deket nggak?</div>
+              <div class="text">
+                jawab jujur yaa. tapi kalo tombolnya kabur, mungkin dia tau pilihan yang bener yang mana.
+              </div>
+
+              <div class="tease-zone" id="teaseZone">
+                <button class="btn-main tease-yes" onclick="chooseYes()">biarin deket</button>
+                <button class="btn-second tease-no" id="noBtn" onmouseover="moveNoBtn()" onclick="moveNoBtn()">ga dulu</button>
+              </div>
+
+              <div class="game-result" id="resultText"></div>
+            </div>
+          </div>
+
+          <div class="actions" style="margin-top:18px;">
+            <button class="btn-second" onclick="prevSlide()">back</button>
+            <button class="btn-main" onclick="nextSlide()">next page</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="panel">
+          <div class="badge">final chapter</div>
+          <div class="ending">
+            <div class="ending-title">ayy, baobei yang terlalu gampang bikin kangen</div>
+
+            <div class="ending-sub hero-desc">
+              intinya aku seneng banget ada kamu.
+            </div>
+            <div class="ending-sub hero-desc">
+              kamu cantik, lucu, manis, dan bikin hari hari aku jadi lebih seru.
+            </div>
+            <div class="ending-sub hero-desc">
+              jadi kalo aku sering kangen, sering salting, atau sering pengen deket terus, ya itu karena aku emang sesuka itu sama kamu.
+            </div>
+
+            <div class="hero-actions ending-cta">
+              <button class="btn-main" onclick="goToWhatsApp()">chat aku sekarang</button>
+              <button class="btn-second" onclick="prevSlide()">back</button>
+            </div>
+
+            <div class="footer-text">
+              dari dann, buat ayy, baobei kesayangann
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="nav-wrap" id="navBar">
+      <button class="btn-second" onclick="prevSlide()">back</button>
+      <div class="page-indicator" id="pageIndicator">1 / 5</div>
+      <button class="btn-main" onclick="nextSlide()">next</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="imageModalBackdrop" onclick="closeImageViewer(event)">
+    <div class="modal">
+      <img src="" alt="foto besar" class="viewer-img" id="viewerImg" />
+      <div class="viewer-caption" id="viewerCaption"></div>
+      <button class="btn-main" onclick="closeImageViewer()">tutup</button>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    const app = document.getElementById("app");
+    const navBar = document.getElementById("navBar");
+    const pageIndicator = document.getElementById("pageIndicator");
+
+    const typingList = [
+      "buat kamu yang cantikkuu banget",
+      "yang lucuu, maniss, dan bikin aku salting terus",
+      "yang ngerti bahasa taiwan dan bikin aku makin kagumm",
+      "yang tiap muncul langsung bikin hari aku lebih seruu"
+    ];
+
+    const wildTexts = [
+      "jujur yaa, kamu tuh bikin aku susah buat biasa aja.",
+      "tiap liat kamu rasanya pengen senyum sendiri terus wkwkw.",
+      "kamu tuh manis banget, lucu banget, terus bikin aku nyaman banget.",
+      "semakin aku kenal kamu, semakin aku sukaa sama kamu.",
+      "kamu tuh tipe orang yang bikin aku pengen deket terus."
+    ];
+
+    const noteTexts = [
+      "kalo aku salting terus, itu gara gara kamu yaa.",
+      "kamu tuh cantik banget, beneran deh.",
+      "aku seneng banget bisa kenal kamu.",
+      "hadirnya kamu aja udah bikin mood aku naik.",
+      "kamu salah satu hal paling manis yang aku punya sekarang."
+    ];
+
+    let currentSlide = 0;
+    let typingSentenceIndex = 0;
+    let typingCharIndex = 0;
+    let deleting = false;
+    let isMusicPlaying = false;
+    let entered = false;
+
+    const audio = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    const musicStatus = document.getElementById("musicStatus");
+    const musicChip = document.getElementById("musicChip");
+    const progressBar = document.getElementById("progressBar");
+    const currentTimeEl = document.getElementById("currentTime");
+    const durationTimeEl = document.getElementById("durationTime");
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("preloader").classList.add("hide");
+      }, 2200);
+    });
+
+    function enterPage() {
+      if (entered) return;
+      entered = true;
+
+      document.getElementById("startOverlay").classList.add("hide");
+      app.classList.add("show");
+      navBar.classList.add("show");
+
+      audio.play().then(() => {
+        isMusicPlaying = true;
+        musicBtn.textContent = "pause music";
+        musicStatus.textContent = "musik lagi diputar. biar vibes nya makin kena pas kamu buka ini.";
+        musicChip.textContent = "lagi muter buat baobei";
+      }).catch(() => {
+        isMusicPlaying = false;
+        musicBtn.textContent = "play music";
+        musicStatus.textContent = "klik tombol music kalau lagunya belum mulai.";
+        musicChip.textContent = "siap diputer";
+      });
+
+      burstHearts(14);
+      updateSlide();
+    }
+
+    function updateSlide() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === currentSlide);
+      });
+      pageIndicator.textContent = `${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function nextSlide() {
+      currentSlide = Math.min(currentSlide + 1, slides.length - 1);
+      updateSlide();
+    }
+
+    function prevSlide() {
+      currentSlide = Math.max(currentSlide - 1, 0);
+      updateSlide();
+    }
+
+    function goToWhatsApp() {
+      const message = encodeURIComponent("BEII.. LOVU");
+      window.open(`https://wa.me/6285111602642?text=${message}`, "_blank");
+    }
+
+    function openImageViewer(src, caption) {
+      document.getElementById("viewerImg").src = src;
+      document.getElementById("viewerCaption").textContent = caption || "";
+      document.getElementById("imageModalBackdrop").style.display = "flex";
+    }
+
+    function closeImageViewer(event) {
+      if (!event || event.target.id === "imageModalBackdrop" || event.target.tagName === "BUTTON") {
+        document.getElementById("imageModalBackdrop").style.display = "none";
+      }
+    }
+
+    function generateWildText() {
+      const a = wildTexts[Math.floor(Math.random() * wildTexts.length)];
+      const b = noteTexts[Math.floor(Math.random() * noteTexts.length)];
+      document.getElementById("wildText").textContent = a;
+      document.getElementById("wildOutput").textContent = b;
+    }
+
+    async function copyWildText() {
+      const textA = document.getElementById("wildText").textContent;
+      const textB = document.getElementById("wildOutput").textContent;
+      const finalText = `${textA}\n\n${textB}`;
+      try {
+        await navigator.clipboard.writeText(finalText);
+        document.getElementById("wildOutput").textContent = "udah ke copy, tinggal kirim ajaa";
+      } catch {
+        document.getElementById("wildOutput").textContent = "browser ini nggak ngasih auto copy, jadi copy manual yaa";
+      }
+    }
+
+    function setMeter(percent, text) {
+      document.getElementById("meterFill").style.width = percent + "%";
+      document.getElementById("meterText").textContent = text;
+      if (percent >= 88) burstHearts(8);
+    }
+
+    function chooseYes() {
+      document.getElementById("resultText").textContent =
+        "nahh gitu dongg, berarti kamu emang sayang akuu wkwkw";
+      burstHearts(14);
+    }
+
+    function moveNoBtn() {
+      const btn = document.getElementById("noBtn");
+      const zone = document.getElementById("teaseZone");
+
+      const maxX = Math.max(0, zone.clientWidth - btn.offsetWidth);
+      const maxY = Math.max(0, zone.clientHeight - btn.offsetHeight);
+
+      const randomX = Math.floor(Math.random() * (maxX + 1));
+      const randomY = Math.floor(Math.random() * (maxY + 1));
+
+      btn.style.left = randomX + "px";
+      btn.style.top = randomY + "px";
+      btn.style.right = "auto";
+
+      document.getElementById("resultText").textContent =
+        "ihh jangan pilih itu dongg wkwkw";
+    }
+
+    function createHeart(symbol = "❤") {
+      const item = document.createElement("div");
+      item.className = "heart";
+      item.textContent = symbol;
+      item.style.left = Math.random() * 100 + "vw";
+      item.style.bottom = "-20px";
+      item.style.animationDuration = (Math.random() * 4 + 4) + "s";
+      item.style.fontSize = (Math.random() * 12 + 12) + "px";
+      document.body.appendChild(item);
+      setTimeout(() => item.remove(), 9000);
+    }
+
+    function burstHearts(total = 10) {
+      for (let i = 0; i < total; i++) {
+        setTimeout(() => createHeart("❤"), i * 90);
+      }
+    }
+
+    function typeLoop() {
+      const typingEl = document.getElementById("typingText");
+      if (!typingEl) return;
+
+      const currentSentence = typingList[typingSentenceIndex];
+
+      if (!deleting) {
+        typingCharIndex++;
+        typingEl.textContent = currentSentence.slice(0, typingCharIndex);
+
+        if (typingCharIndex === currentSentence.length) {
+          deleting = true;
+          setTimeout(typeLoop, 1400);
+          return;
+        }
+      } else {
+        typingCharIndex--;
+        typingEl.textContent = currentSentence.slice(0, typingCharIndex);
+
+        if (typingCharIndex === 0) {
+          deleting = false;
+          typingSentenceIndex = (typingSentenceIndex + 1) % typingList.length;
+        }
+      }
+
+      setTimeout(typeLoop, deleting ? 35 : 65);
+    }
+
+    async function toggleMusic() {
+      try {
+        if (!isMusicPlaying) {
+          await audio.play();
+          isMusicPlaying = true;
+          musicBtn.textContent = "pause music";
+          musicStatus.textContent = "musik lagi diputar. biar vibes nya makin kena pas kamu buka ini.";
+          musicChip.textContent = "lagi muter buat baobei";
+        } else {
+          audio.pause();
+          isMusicPlaying = false;
+          musicBtn.textContent = "play music";
+          musicStatus.textContent = "musik dipause dulu.";
+          musicChip.textContent = "lagi diem dulu";
+        }
+      } catch (error) {
+        musicStatus.textContent = "musiknya belum kebaca, cek lagi file music.mp3 yaa";
+        musicChip.textContent = "file musik belum kebaca";
+      }
+    }
+
+    function formatTime(seconds) {
+      if (!isFinite(seconds)) return "0:00";
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+    }
+
+    audio.addEventListener("loadedmetadata", () => {
+      durationTimeEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+      durationTimeEl.textContent = formatTime(audio.duration);
+      const progress = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+    });
+
+    audio.addEventListener("ended", () => {
+      progressBar.style.width = "0%";
+      currentTimeEl.textContent = "0:00";
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!entered) return;
+      if (e.key === "ArrowRight") nextSlide();
+      if (e.key === "ArrowLeft") prevSlide();
+      if (e.key === "Escape") closeImageViewer();
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    document.addEventListener("touchend", (e) => {
+      if (!entered) return;
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > 60) {
+        if (diff > 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    setInterval(() => {
+      if (entered) createHeart("❤");
+    }, 2400);
+
+    typeLoop();
+  </script>
+</body>
+</html>
