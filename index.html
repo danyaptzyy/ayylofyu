@@ -37,8 +37,6 @@
 
     :root {
       --muted: rgba(255,255,255,0.72);
-      --soft: rgba(255,255,255,0.08);
-      --soft-2: rgba(255,255,255,0.05);
       --border: rgba(255,255,255,0.12);
       --pink1: #ff4f9a;
       --pink2: #ff85c2;
@@ -811,22 +809,34 @@
 
     @media (max-width: 600px) {
       .slide {
-        padding: 10px;
+        padding: 8px;
       }
 
       .panel,
       .start-card {
-        padding: 18px 14px;
-        border-radius: 24px;
+        padding: 14px 12px;
+        border-radius: 22px;
+      }
+
+      .panel {
+        max-height: calc(100vh - 16px);
       }
 
       .hero-title,
       .ending-title {
-        font-size: 1.95rem;
+        font-size: 1.7rem;
+        line-height: 1.08;
+        margin-bottom: 8px;
       }
 
       .start-title {
-        font-size: 1.75rem;
+        font-size: 1.55rem;
+      }
+
+      .badge {
+        font-size: 0.78rem;
+        padding: 6px 12px;
+        margin-bottom: 12px;
       }
 
       .typing-line,
@@ -841,12 +851,13 @@
       .time-row,
       .quote-strip,
       .preloader-sub {
-        font-size: 0.93rem;
-        line-height: 1.7;
+        font-size: 0.88rem;
+        line-height: 1.55;
       }
 
       .couple-name {
-        font-size: 0.98rem;
+        font-size: 0.92rem;
+        margin-bottom: 12px;
       }
 
       .hero-actions,
@@ -855,6 +866,7 @@
       .guess-grid {
         flex-direction: column;
         display: flex;
+        gap: 9px;
       }
 
       .hero-actions button,
@@ -862,29 +874,115 @@
       .music-row button,
       .guess-grid button {
         width: 100%;
+        padding: 10px 14px;
+        font-size: 0.88rem;
       }
 
       .music-chip {
         width: 100%;
         justify-content: center;
+        font-size: 0.84rem;
+        padding: 8px 10px;
+      }
+
+      .hero-photo {
+        min-height: 220px;
+        border-radius: 22px;
+      }
+
+      .hero-overlay {
+        padding: 14px;
+      }
+
+      .hero-overlay h3 {
+        font-size: 0.98rem;
+        margin-bottom: 4px;
+      }
+
+      .hero-overlay p {
+        font-size: 0.84rem;
+        line-height: 1.45;
+      }
+
+      .photo-wall {
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .photo-stack {
+        gap: 10px;
+      }
+
+      .photo-card {
+        border-radius: 18px;
+      }
+
+      .photo-card.large,
+      .photo-card.medium,
+      .photo-card.small {
+        min-height: 155px;
+      }
+
+      .photo-label {
+        left: 10px;
+        bottom: 10px;
+        padding: 6px 9px;
+        font-size: 0.76rem;
+      }
+
+      .lux-box {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .section-title {
+        font-size: 0.96rem;
+        margin-bottom: 7px;
+      }
+
+      .quote-strip {
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 16px;
+      }
+
+      .progress-wrap {
+        margin-top: 10px;
+      }
+
+      .time-row {
+        margin-top: 6px;
+      }
+
+      .guess-grid {
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+      }
+
+      .guess-grid button {
+        width: 100%;
       }
 
       .tease-zone {
-        min-height: 160px;
+        min-height: 120px;
+        margin-top: 10px;
       }
 
       .tease-yes,
       .tease-no {
-        min-width: 100px;
-        font-size: 0.88rem;
+        min-width: 88px;
+        font-size: 0.82rem;
+        padding: 9px 10px;
       }
 
       .tease-yes {
         left: 6%;
+        top: 14px;
       }
 
       .tease-no {
         right: 6%;
+        top: 14px;
       }
     }
   </style>
@@ -969,17 +1067,17 @@
           </div>
 
           <div class="photo-wall">
-            <div class="photo-card large" onclick="openImageViewer('foto1.jpg', 'yang ini cantiknya rapih, tapi efeknya ke aku kacau')">
+            <div class="photo-card large" onclick="openImageViewer('foto1.jpg', 'kicik ajaa tapi nyamann')">
               <img src="foto1.jpg" alt="foto 1" />
               <div class="photo-label">rumah masa depan kita, ups</div>
             </div>
 
             <div class="photo-stack">
-              <div class="photo-card medium" onclick="openImageViewer('foto2.jpg', 'yang ini keliatan tenang, tapi cukup buat bikin aku salah fokus')">
+              <div class="photo-card medium" onclick="openImageViewer('foto2.jpg', 'so, kapan bepelukannn rl, bikin anak nanti, ups')">
                 <img src="foto2.jpg" alt="foto 2" />
                 <div class="photo-label">bepelukannnnnnn</div>
               </div>
-              <div class="photo-card small" onclick="openImageViewer('foto3.jpg', 'yang ini favorit. sopan dilihat, tapi auranya nakal ke kepala aku')">
+              <div class="photo-card small" onclick="openImageViewer('foto3.jpg', 'imudd duyungnya, tapi km lebi imud')">
                 <img src="foto3.jpg" alt="foto 3" />
                 <div class="photo-label">cihuyy jadi duyungg</div>
               </div>
@@ -1162,8 +1260,8 @@
     const typingList = [
       "buat kamu yang cantikkuu banget",
       "yang lucuu, maniss, dan bikin aku salting terus",
-      "yang ngerti bahasa taiwan dan bikin aku makin kagumm",
-      "yang tiap muncul langsung bikin hari aku lebih seruu"
+      "istrinya jungkook katanya padahal istri aku",
+      "sok jago padahal on ol"
     ];
 
     const wildTexts = [
