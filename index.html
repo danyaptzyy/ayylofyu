@@ -303,6 +303,7 @@
       max-width: 1120px;
       max-height: calc(100vh - 44px);
       overflow: auto;
+      overflow-x: hidden;
       background: rgba(255,255,255,0.08);
       border: 1px solid var(--border);
       backdrop-filter: blur(18px);
@@ -437,7 +438,7 @@
       position: absolute;
       inset: auto 0 0 0;
       padding: 22px;
-      background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0));
+      background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.12), transparent);
     }
 
     .hero-overlay h3 {
@@ -447,18 +448,17 @@
     }
 
     .hero-overlay p {
-      color: rgba(255,255,255,0.88);
-      line-height: 1.6;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
       font-size: 0.95rem;
       text-transform: lowercase;
     }
 
     .section-title {
-      font-size: 1.12rem;
-      font-weight: 700;
-      color: var(--pink3);
+      font-size: 1.35rem;
       margin-bottom: 10px;
-      letter-spacing: 0.01em;
+      font-weight: 700;
+      letter-spacing: -0.02em;
       text-transform: lowercase;
     }
 
@@ -491,6 +491,16 @@
       gap: 16px;
       align-items: end;
       margin-top: 10px;
+      min-width: 0;
+    }
+
+    .hero > *,
+    .story-grid > *,
+    .game-grid > *,
+    .photo-wall > *,
+    .photo-stack,
+    .lux-box {
+      min-width: 0;
     }
 
     .photo-stack {
@@ -812,6 +822,11 @@
         padding: 8px;
       }
 
+      .slide:nth-of-type(2) .panel {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
       .panel,
       .start-card {
         padding: 14px 12px;
@@ -905,8 +920,52 @@
       }
 
       .photo-wall {
+        grid-template-columns: 1fr;
         gap: 10px;
         margin-top: 6px;
+      }
+
+      .slide:nth-of-type(2) .photo-card,
+      .slide:nth-of-type(2) .lux-box,
+      .slide:nth-of-type(2) .quote-strip,
+      .slide:nth-of-type(2) .actions {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .slide:nth-of-type(2) .section-title {
+        font-size: 0.98rem;
+        line-height: 1.28;
+      }
+
+      .slide:nth-of-type(2) .section-sub {
+        max-width: 100%;
+        margin-bottom: 12px;
+      }
+
+      .slide:nth-of-type(2) .photo-card {
+        min-width: 0;
+      }
+
+      .slide:nth-of-type(2) .photo-label {
+        max-width: calc(100% - 20px);
+        white-space: normal;
+        line-height: 1.35;
+        display: inline-flex;
+        width: fit-content;
+      }
+
+      .slide:nth-of-type(2) .lux-box {
+        padding: 14px 12px;
+      }
+
+      .slide:nth-of-type(2) .quote-strip {
+        padding: 12px 10px;
+      }
+
+      .slide:nth-of-type(2) .text {
+        font-size: 0.84rem;
+        line-height: 1.6;
       }
 
       .photo-stack {
@@ -920,7 +979,16 @@
       .photo-card.large,
       .photo-card.medium,
       .photo-card.small {
-        min-height: 155px;
+        min-height: 150px;
+      }
+
+      .slide:nth-of-type(2) .photo-card.large {
+        min-height: 190px;
+      }
+
+      .slide:nth-of-type(2) .photo-card.medium,
+      .slide:nth-of-type(2) .photo-card.small {
+        min-height: 160px;
       }
 
       .photo-label {
@@ -1189,22 +1257,24 @@
               </div>
 
               <div class="game-result" id="meterText">
-                pilih aja. tapi jangan pura pura nggak tau jawabannya.
+                pilih duluu, aku penasaran kamu nebak yang mana.
               </div>
             </div>
 
             <div class="lux-box">
-              <div class="section-title">game 2 — biarin dann deket nggak?</div>
+              <div class="section-title">game 2 — pilih ini yaa</div>
               <div class="text">
-                jawab jujur yaa. tapi kalo tombolnya kabur, mungkin dia tau pilihan yang bener yang mana.
+                jujur ajaa, kamu sayang aku kan? pilih yang bener yaa, jangan yang aneh aneh.
               </div>
 
               <div class="tease-zone" id="teaseZone">
-                <button class="btn-main tease-yes" onclick="chooseYes()">biarin deket</button>
-                <button class="btn-second tease-no" id="noBtn" onmouseover="moveNoBtn()" onclick="moveNoBtn()">ga dulu</button>
+                <button class="btn-main tease-yes" onclick="chooseYes()">iyaa sayang</button>
+                <button class="btn-second tease-no" id="noBtn" onmouseenter="moveNoBtn()" onclick="moveNoBtn()">nggak dulu</button>
               </div>
 
-              <div class="game-result" id="resultText"></div>
+              <div class="game-result" id="resultText">
+                pilih ajaa yang kiri, yang kanan suka malu maluu.
+              </div>
             </div>
           </div>
 
@@ -1217,18 +1287,23 @@
 
       <section class="slide">
         <div class="panel">
-          <div class="badge">final chapter</div>
           <div class="ending">
-            <div class="ending-title">sayangkuu, cintakuu, cantikkuu yang terlalu gampang bikin kangen</div>
+            <div class="badge">chapter 5</div>
+            <div class="ending-title">intinya aku suka banget sama kamu</div>
+            <div class="section-sub ending-sub">
+              dan setiap kali liat kamu, aku selalu ngerasa beruntung bisa deket sama orang semanis kamuu.
+            </div>
 
-            <div class="ending-sub hero-desc">
-              intinya aku seneng banget ada kamu.
-            </div>
-            <div class="ending-sub hero-desc">
-              kamu cantik, lucu, manis, dan bikin hari hari aku jadi lebih seru.
-            </div>
-            <div class="ending-sub hero-desc">
-              jadi kalo aku sering kangen, sering salting, atau sering pengen deket terus, ya itu karena aku emang sesuka itu sama kamu.
+            <div class="lux-box" style="margin-top:18px; text-align:left;">
+              <div class="text">
+                aku nggak butuh kalimat yang terlalu ribet buat jelasin kamu. karena sesimpel apa pun kalimatnya, hasil akhirnya tetap sama: kamu spesial banget.
+              </div>
+              <div class="text">
+                makasih yaa udah hadir, udah jadi diri kamu sendiri, udah jadi orang yang bikin hari aku lebih seru dan lebih hangat.
+              </div>
+              <div class="text">
+                jadi kalau suatu saat kamu nanya kenapa aku perhatian terus, jawabannya ya karena kamu memang sepantes itu buat disayangin.
+              </div>
             </div>
 
             <div class="hero-actions ending-cta">
