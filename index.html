@@ -373,8 +373,7 @@
 
     .hero-actions,
     .actions,
-    .music-row,
-    .nav-wrap {
+    .music-row {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
@@ -692,34 +691,6 @@
       text-align: center;
     }
 
-    .nav-wrap {
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      z-index: 18;
-      display: none;
-      align-items: center;
-      background: rgba(14, 14, 28, 0.6);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 10px;
-      border-radius: 999px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .nav-wrap.show {
-      display: flex;
-    }
-
-    .page-indicator {
-      min-width: 78px;
-      text-align: center;
-      color: rgba(255,255,255,0.82);
-      font-size: 0.92rem;
-      text-transform: lowercase;
-    }
-
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -915,16 +886,6 @@
       .tease-no {
         right: 6%;
       }
-
-      .nav-wrap {
-        bottom: 10px;
-        width: calc(100% - 20px);
-        justify-content: center;
-      }
-
-      .page-indicator {
-        min-width: 60px;
-      }
     }
   </style>
 </head>
@@ -947,7 +908,7 @@
   <div class="start-overlay" id="startOverlay">
     <div class="start-card">
       <div class="badge">private story</div>
-      <div class="start-title">haii baobei</div>
+      <div class="start-title">haii sayangkuuu</div>
       <div class="start-sub">
         ini aku bikinn khusus buat kamu yaa, coba bukaa pelan pelan
       </div>
@@ -970,7 +931,7 @@
                 kamu tuh cantik banget, lucu banget, terus ada sisi dewasa yang bikin aku makin sukaa.
               </div>
               <div class="hero-desc">
-                apalagi kamu ngerti bahasa taiwan juga, makin bikin kamu keliatan beda banget di mata aku.
+                kalo harus bersaing sama jungkook, gapapa, soalnya aku lah jungkook nya, ups.
               </div>
               <div class="hero-desc">
                 jadi kalo aku keliatan suka merhatiin kamu terus, ya gimana yaa, soalnya kamu semanis itu.
@@ -1002,25 +963,25 @@
       <section class="slide">
         <div class="panel">
           <div class="badge">chapter 2</div>
-          <div class="section-title">foto foto cantikkuu</div>
+          <div class="section-title">foto foto kitaaaaa</div>
           <div class="section-sub">
-            ini aku pilihin yang paling bikin aku salting wkwkw
+            ini aku pilihin yang palingg baguss topppp
           </div>
 
           <div class="photo-wall">
             <div class="photo-card large" onclick="openImageViewer('foto1.jpg', 'yang ini cantiknya rapih, tapi efeknya ke aku kacau')">
               <img src="foto1.jpg" alt="foto 1" />
-              <div class="photo-label">yang ini lucuu banget</div>
+              <div class="photo-label">rumah masa depan kita, ups</div>
             </div>
 
             <div class="photo-stack">
               <div class="photo-card medium" onclick="openImageViewer('foto2.jpg', 'yang ini keliatan tenang, tapi cukup buat bikin aku salah fokus')">
                 <img src="foto2.jpg" alt="foto 2" />
-                <div class="photo-label">yang ini manis parah</div>
+                <div class="photo-label">bepelukannnnnnn</div>
               </div>
               <div class="photo-card small" onclick="openImageViewer('foto3.jpg', 'yang ini favorit. sopan dilihat, tapi auranya nakal ke kepala aku')">
                 <img src="foto3.jpg" alt="foto 3" />
-                <div class="photo-label">yang ini favorit akuu</div>
+                <div class="photo-label">cihuyy jadi duyungg</div>
               </div>
             </div>
 
@@ -1051,7 +1012,7 @@
 
           <div class="story-grid">
             <div class="lux-box">
-              <div class="section-title">lagu buat nemenin</div>
+              <div class="section-title">lagu buat nemenin kamu bacain ini wkwkw</div>
               <div class="section-sub">
                 karena beberapa hal emang lebih enak dirasain kalo ada musik di belakangnya
               </div>
@@ -1115,7 +1076,7 @@
             <div class="lux-box">
               <div class="section-title">game 1 — tebak level salting dann</div>
               <div class="text">
-                menurut kamu, kalo kamu manggil “babuu” sambil senyum dikit, dann bakal salting berapa persen?
+                menurut kamu, kalo kamu manggil “sayangkuuu” sambil senyum dikit, dann bakal salting berapa persen?
               </div>
 
               <div class="guess-grid">
@@ -1160,7 +1121,7 @@
         <div class="panel">
           <div class="badge">final chapter</div>
           <div class="ending">
-            <div class="ending-title">ayy, baobei yang terlalu gampang bikin kangen</div>
+            <div class="ending-title">sayangkuu, cintakuu, cantikkuu yang terlalu gampang bikin kangen</div>
 
             <div class="ending-sub hero-desc">
               intinya aku seneng banget ada kamu.
@@ -1178,17 +1139,11 @@
             </div>
 
             <div class="footer-text">
-              dari dann, buat ayy, baobei kesayangann
+              dari dann, buat ayy, kesayangann
             </div>
           </div>
         </div>
       </section>
-    </div>
-
-    <div class="nav-wrap" id="navBar">
-      <button class="btn-second" onclick="prevSlide()">back</button>
-      <div class="page-indicator" id="pageIndicator">1 / 5</div>
-      <button class="btn-main" onclick="nextSlide()">next</button>
     </div>
   </div>
 
@@ -1203,8 +1158,6 @@
   <script>
     const slides = document.querySelectorAll(".slide");
     const app = document.getElementById("app");
-    const navBar = document.getElementById("navBar");
-    const pageIndicator = document.getElementById("pageIndicator");
 
     const typingList = [
       "buat kamu yang cantikkuu banget",
@@ -1256,7 +1209,6 @@
 
       document.getElementById("startOverlay").classList.add("hide");
       app.classList.add("show");
-      navBar.classList.add("show");
 
       audio.play().then(() => {
         isMusicPlaying = true;
@@ -1278,7 +1230,6 @@
       slides.forEach((slide, index) => {
         slide.classList.toggle("active", index === currentSlide);
       });
-      pageIndicator.textContent = `${currentSlide + 1} / ${slides.length}`;
     }
 
     function nextSlide() {
